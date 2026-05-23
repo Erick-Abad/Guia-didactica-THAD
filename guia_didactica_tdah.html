@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Didáctica – Herramientas Digitales para Niños con TDAH</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #2563EB;
+    --azul-claro: #DBEAFE;
+    --verde: #059669;
+    --verde-claro: #D1FAE5;
+    --naranja: #F59E0B;
+    --naranja-claro: #FEF3C7;
+    --rosa: #EC4899;
+    --rosa-claro: #FCE7F3;
+    --morado: #7C3AED;
+    --morado-claro: #EDE9FE;
+    --rojo: #DC2626;
+    --rojo-claro: #FEE2E2;
+    --celeste: #0EA5E9;
+    --celeste-claro: #E0F2FE;
+    --lima: #84CC16;
+    --lima-claro: #ECFCCB;
+    --gris-oscuro: #1E293B;
+    --gris: #64748B;
+    --blanco: #FFFFFF;
+    --fondo: #F8FAFC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--fondo);
+    color: var(--gris-oscuro);
+    line-height: 1.7;
+  }
+
+  /* ===== PORTADA ===== */
+  .portada {
+    background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 40%, #7C3AED 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portada::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(236,72,153,0.25) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(14,165,233,0.25) 0%, transparent 50%);
+  }
+
+  .portada-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .portada-content { position: relative; z-index: 2; max-width: 800px; }
+
+  .portada-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #BAE6FD;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 28px;
+    backdrop-filter: blur(10px);
+  }
+
+  .portada h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    color: #FFFFFF;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .portada h1 span { color: #FCD34D; }
+
+  .portada-sub {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    margin-bottom: 40px;
+  }
+
+  .portada-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 50px;
+  }
+
+  .chip {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+  }
+
+  .portada-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(12px);
+  }
+
+  .portada-info-item { text-align: left; }
+  .portada-info-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 700; margin-bottom: 4px; }
+  .portada-info-value { font-size: 15px; color: white; font-weight: 700; }
+
+  /* ===== NAVEGACIÓN ===== */
+  .nav {
+    background: var(--blanco);
+    border-bottom: 2px solid #E2E8F0;
+    padding: 0 40px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    scrollbar-width: none;
+  }
+
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    white-space: nowrap;
+    background: var(--fondo);
+    border: 1.5px solid #E2E8F0;
+    color: var(--gris);
+    padding: 7px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .nav-btn:hover { background: var(--azul); color: white; border-color: var(--azul); }
+
+  /* ===== INTRO ===== */
+  .intro-section {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 40px;
+  }
+
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.2rem;
+    color: var(--gris-oscuro);
+    margin-bottom: 8px;
+  }
+
+  .section-title span { color: var(--azul); }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .intro-card {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 28px;
+    border: 1.5px solid #E2E8F0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  }
+
+  .intro-card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .intro-card p { color: var(--gris); font-size: 15px; }
+
+  .tdah-card {
+    background: linear-gradient(135deg, #EFF6FF, #EDE9FE);
+    border-color: #C7D2FE;
+    grid-column: 1 / -1;
+  }
+
+  /* ===== HERRAMIENTAS ===== */
+  .tools-section {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 40px;
+  }
+
+  .tool-card {
+    background: var(--blanco);
+    border-radius: 24px;
+    border: 1.5px solid #E2E8F0;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+    margin-bottom: 40px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+
+  .tool-header {
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .tool-icon {
+    width: 70px; height: 70px;
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  }
+
+  .tool-header-text h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .tool-header-text p {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+    opacity: 0.7;
+  }
+
+  .tool-body {
+    padding: 0 36px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .tool-section {
+    background: var(--fondo);
+    border-radius: 16px;
+    padding: 22px;
+    border: 1.5px solid #E2E8F0;
+  }
+
+  .tool-section.full { grid-column: 1 / -1; }
+
+  .tool-section h4 {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .tool-section p, .tool-section li {
+    font-size: 15px;
+    color: var(--gris-oscuro);
+    line-height: 1.7;
+  }
+
+  .tool-section ul { padding-left: 20px; }
+  .tool-section li { margin-bottom: 6px; }
+
+  .actividad-box {
+    border-radius: 16px;
+    padding: 24px;
+    border: 2px dashed;
+    grid-column: 1 / -1;
+  }
+
+  .actividad-box h4 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .actividad-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step p { font-size: 14px; }
+
+  /* Color themes per tool */
+  .t1 .tool-header { background: linear-gradient(135deg, #FEF3C7, #FDE68A); }
+  .t1 .tool-icon { background: #F59E0B; }
+  .t1 .tool-header-text h2 { color: #92400E; }
+  .t1 .tool-header-text p { color: #92400E; }
+  .t1 .tool-section h4 { color: #D97706; }
+  .t1 .actividad-box { background: #FFFBEB; border-color: #FCD34D; }
+  .t1 .actividad-box h4 { color: #D97706; }
+  .t1 .step-num { background: #FCD34D; color: #92400E; }
+
+  .t2 .tool-header { background: linear-gradient(135deg, #DBEAFE, #BFDBFE); }
+  .t2 .tool-icon { background: #2563EB; }
+  .t2 .tool-header-text h2 { color: #1E3A8A; }
+  .t2 .tool-header-text p { color: #1E3A8A; }
+  .t2 .tool-section h4 { color: #2563EB; }
+  .t2 .actividad-box { background: #EFF6FF; border-color: #93C5FD; }
+  .t2 .actividad-box h4 { color: #2563EB; }
+  .t2 .step-num { background: #BFDBFE; color: #1E3A8A; }
+
+  .t3 .tool-header { background: linear-gradient(135deg, #FCE7F3, #FBCFE8); }
+  .t3 .tool-icon { background: #EC4899; }
+  .t3 .tool-header-text h2 { color: #831843; }
+  .t3 .tool-header-text p { color: #831843; }
+  .t3 .tool-section h4 { color: #DB2777; }
+  .t3 .actividad-box { background: #FDF2F8; border-color: #F9A8D4; }
+  .t3 .actividad-box h4 { color: #DB2777; }
+  .t3 .step-num { background: #FBCFE8; color: #831843; }
+
+  .t4 .tool-header { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); }
+  .t4 .tool-icon { background: #059669; }
+  .t4 .tool-header-text h2 { color: #064E3B; }
+  .t4 .tool-header-text p { color: #064E3B; }
+  .t4 .tool-section h4 { color: #059669; }
+  .t4 .actividad-box { background: #ECFDF5; border-color: #6EE7B7; }
+  .t4 .actividad-box h4 { color: #059669; }
+  .t4 .step-num { background: #A7F3D0; color: #064E3B; }
+
+  .t5 .tool-header { background: linear-gradient(135deg, #EDE9FE, #DDD6FE); }
+  .t5 .tool-icon { background: #7C3AED; }
+  .t5 .tool-header-text h2 { color: #4C1D95; }
+  .t5 .tool-header-text p { color: #4C1D95; }
+  .t5 .tool-section h4 { color: #7C3AED; }
+  .t5 .actividad-box { background: #F5F3FF; border-color: #C4B5FD; }
+  .t5 .actividad-box h4 { color: #7C3AED; }
+  .t5 .step-num { background: #DDD6FE; color: #4C1D95; }
+
+  .t6 .tool-header { background: linear-gradient(135deg, #FEE2E2, #FECACA); }
+  .t6 .tool-icon { background: #DC2626; }
+  .t6 .tool-header-text h2 { color: #7F1D1D; }
+  .t6 .tool-header-text p { color: #7F1D1D; }
+  .t6 .tool-section h4 { color: #DC2626; }
+  .t6 .actividad-box { background: #FEF2F2; border-color: #FCA5A5; }
+  .t6 .actividad-box h4 { color: #DC2626; }
+  .t6 .step-num { background: #FECACA; color: #7F1D1D; }
+
+  .t7 .tool-header { background: linear-gradient(135deg, #E0F2FE, #BAE6FD); }
+  .t7 .tool-icon { background: #0EA5E9; }
+  .t7 .tool-header-text h2 { color: #0C4A6E; }
+  .t7 .tool-header-text p { color: #0C4A6E; }
+  .t7 .tool-section h4 { color: #0EA5E9; }
+  .t7 .actividad-box { background: #F0F9FF; border-color: #7DD3FC; }
+  .t7 .actividad-box h4 { color: #0EA5E9; }
+  .t7 .step-num { background: #BAE6FD; color: #0C4A6E; }
+
+  .t8 .tool-header { background: linear-gradient(135deg, #ECFCCB, #D9F99D); }
+  .t8 .tool-icon { background: #65A30D; }
+  .t8 .tool-header-text h2 { color: #1A2E05; }
+  .t8 .tool-header-text p { color: #1A2E05; }
+  .t8 .tool-section h4 { color: #65A30D; }
+  .t8 .actividad-box { background: #F7FEE7; border-color: #BEF264; }
+  .t8 .actividad-box h4 { color: #65A30D; }
+  .t8 .step-num { background: #D9F99D; color: #1A2E05; }
+
+  .t9 .tool-header { background: linear-gradient(135deg, #FFF7ED, #FED7AA); }
+  .t9 .tool-icon { background: #EA580C; }
+  .t9 .tool-header-text h2 { color: #431407; }
+  .t9 .tool-header-text p { color: #431407; }
+  .t9 .tool-section h4 { color: #EA580C; }
+  .t9 .actividad-box { background: #FFF7ED; border-color: #FDBA74; }
+  .t9 .actividad-box h4 { color: #EA580C; }
+  .t9 .step-num { background: #FED7AA; color: #431407; }
+
+  .t10 .tool-header { background: linear-gradient(135deg, #F0FDFA, #CCFBF1); }
+  .t10 .tool-icon { background: #0D9488; }
+  .t10 .tool-header-text h2 { color: #042F2E; }
+  .t10 .tool-header-text p { color: #042F2E; }
+  .t10 .tool-section h4 { color: #0D9488; }
+  .t10 .actividad-box { background: #F0FDFA; border-color: #5EEAD4; }
+  .t10 .actividad-box h4 { color: #0D9488; }
+  .t10 .step-num { background: #CCFBF1; color: #042F2E; }
+
+  /* ===== PIE DE PÁGINA ===== */
+  footer {
+    background: var(--gris-oscuro);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 40px;
+    font-size: 14px;
+  }
+
+  footer strong { color: white; }
+
+  /* ===== RESPONSIVO ===== */
+  @media (max-width: 720px) {
+    .intro-grid { grid-template-columns: 1fr; }
+    .tool-body { grid-template-columns: 1fr; }
+    .tool-section.full, .actividad-box { grid-column: 1; }
+    .portada { padding: 40px 24px; }
+    .intro-section, .tools-section { padding: 0 20px; }
+    .tool-header { padding: 22px; }
+    .tool-body { padding: 0 20px 24px; }
+  }
+
+  /* ===== NÚMERO DE HERRAMIENTA ===== */
+  .tool-number {
+    position: absolute;
+    top: 20px; right: 28px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    opacity: 0.08;
+    line-height: 1;
+  }
+
+  .tool-header { position: relative; }
+
+  /* ===== TABLA DE CONTENIDO ===== */
+  .toc {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    padding: 0 40px;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .toc-item {
+    background: var(--blanco);
+    border: 1.5px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: var(--gris-oscuro);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .toc-item:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); border-color: var(--azul); color: var(--azul); }
+  .toc-item span { font-size: 1.3rem; }
+</style>
+</head>
+<body>
+
+<!-- ==================== PORTADA ==================== -->
+<section class="portada" id="inicio">
+  <div class="portada-dots"></div>
+  <div class="portada-content">
+    <div class="portada-badge">✦ Tecnología Educativa Inclusiva ✦</div>
+    <h1>Herramientas <span>Digitales</span> para Niños con TDAH</h1>
+    <p class="portada-sub">Guía Didáctica Interactiva · 10 Herramientas Educativas</p>
+    <div class="portada-chips">
+      <span class="chip">🎯 Enfoque Inclusivo</span>
+      <span class="chip">🧠 TDAH</span>
+      <span class="chip">💻 Tecnología Educativa</span>
+      <span class="chip">🎮 Aprendizaje Activo</span>
+      <span class="chip">✏️ Autoría Propia</span>
+    </div>
+    <div class="portada-info">
+      <div class="portada-info-item">
+        <div class="portada-info-label">Asignatura</div>
+        <div class="portada-info-value">Tecnología Educativa Inclusiva y Competencias Digitales</div>
+      </div>
+      <div class="portada-info-item">
+        <div class="portada-info-label">Docente</div>
+        <div class="portada-info-value">Ing. Lissett Margarita Arévalo Gamboa, MgTi.</div>
+      </div>
+      <div class="portada-info-item">
+        <div class="portada-info-label">Actividad</div>
+        <div class="portada-info-value">Sumativa N°03 – Grupal</div>
+      </div>
+      <div class="portada-info-item">
+        <div class="portada-info-label">Dirigido a</div>
+        <div class="portada-info-value">Niños con TDAH</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== NAVEGACIÓN ==================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-btn">🏠 Inicio</a>
+    <a href="#tdah" class="nav-btn">🧠 TDAH</a>
+    <a href="#t1" class="nav-btn">🦜 Duolingo</a>
+    <a href="#t2" class="nav-btn">🐱 Scratch</a>
+    <a href="#t3" class="nav-btn">✨ Genially</a>
+    <a href="#t4" class="nav-btn">📌 Padlet</a>
+    <a href="#t5" class="nav-btn">🎯 Educaplay</a>
+    <a href="#t6" class="nav-btn">⭐ ClassDojo</a>
+    <a href="#t7" class="nav-btn">🎉 Kahoot!</a>
+    <a href="#t8" class="nav-btn">🎨 Canva</a>
+    <a href="#t9" class="nav-btn">📖 Book Creator</a>
+    <a href="#t10" class="nav-btn">🗺️ MindMeister</a>
+  </div>
+</nav>
+
+<!-- ==================== INTRO TDAH ==================== -->
+<section class="intro-section" id="tdah">
+  <h2 class="section-title">¿Por qué tecnología <span>para niños con TDAH</span>?</h2>
+  <p style="color:var(--gris);font-size:16px;max-width:700px;">Las herramientas digitales ofrecen ambientes estructurados, interactivos y motivadores que se alinean con las necesidades cognitivas y emocionales de niños con Trastorno por Déficit de Atención e Hiperactividad.</p>
+
+  <div class="intro-grid">
+    <div class="intro-card tdah-card">
+      <h3>🧠 ¿Qué es el TDAH?</h3>
+      <p>El Trastorno por Déficit de Atención e Hiperactividad (TDAH) es una condición del neurodesarrollo que se caracteriza por dificultades en la atención sostenida, control de impulsos y regulación de la actividad motora. Afecta entre el 5% y 7% de la población infantil y requiere estrategias pedagógicas adaptadas que consideren sus estilos de aprendizaje únicos: visual, activo, breve y motivador.</p>
+    </div>
+    <div class="intro-card">
+      <h3 style="color:var(--azul);">✅ Criterios de selección</h3>
+      <ul style="color:var(--gris);font-size:15px;padding-left:20px;">
+        <li>Interfaces visuales, coloridas e intuitivas</li>
+        <li>Actividades cortas con retroalimentación inmediata</li>
+        <li>Elementos de gamificación (puntos, recompensas)</li>
+        <li>Posibilidad de pausar y retomar</li>
+        <li>Instrucciones claras y simples</li>
+      </ul>
+    </div>
+    <div class="intro-card">
+      <h3 style="color:var(--verde);">🎯 Objetivos de la Guía</h3>
+      <ul style="color:var(--gris);font-size:15px;padding-left:20px;">
+        <li>Presentar 10 herramientas digitales inclusivas</li>
+        <li>Describir su aporte pedagógico para el TDAH</li>
+        <li>Proponer una actividad original por herramienta</li>
+        <li>Fortalecer competencias digitales docentes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TABLA DE CONTENIDO ==================== -->
+<section class="toc">
+  <h2 class="section-title">📚 Tabla de <span>Contenidos</span></h2>
+  <div class="toc-grid">
+    <a href="#t1" class="toc-item"><span>🦜</span> 1. Duolingo</a>
+    <a href="#t2" class="toc-item"><span>🐱</span> 2. Scratch</a>
+    <a href="#t3" class="toc-item"><span>✨</span> 3. Genially</a>
+    <a href="#t4" class="toc-item"><span>📌</span> 4. Padlet</a>
+    <a href="#t5" class="toc-item"><span>🎯</span> 5. Educaplay</a>
+    <a href="#t6" class="toc-item"><span>⭐</span> 6. ClassDojo</a>
+    <a href="#t7" class="toc-item"><span>🎉</span> 7. Kahoot!</a>
+    <a href="#t8" class="toc-item"><span>🎨</span> 8. Canva Edu</a>
+    <a href="#t9" class="toc-item"><span>📖</span> 9. Book Creator</a>
+    <a href="#t10" class="toc-item"><span>🗺️</span> 10. MindMeister</a>
+  </div>
+</section>
+
+<!-- ==================== HERRAMIENTAS ==================== -->
+<section class="tools-section">
+
+  <!-- ===== 1. DUOLINGO ===== -->
+  <div class="tool-card t1" id="t1">
+    <div class="tool-header">
+      <div class="tool-icon">🦜</div>
+      <div class="tool-header-text">
+        <h2>Duolingo</h2>
+        <p>🌐 duolingo.com · Gratuito · Multiplataforma</p>
+      </div>
+      <div class="tool-number">01</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>Duolingo es una plataforma de aprendizaje de idiomas en línea que utiliza la gamificación como estrategia pedagógica central. A través de lecciones cortas, interactivas y estructuradas en niveles progresivos, permite a los usuarios aprender más de 40 idiomas de forma gratuita y desde cualquier dispositivo.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>Lecciones de 3 a 5 minutos (ideal para TDAH)</li>
+          <li>Sistema de puntos XP, rachas y ligas</li>
+          <li>Retroalimentación inmediata y sonidos motivadores</li>
+          <li>Personaje animado (Duo) que mantiene el engagement</li>
+          <li>Progresión visual clara con árbol de habilidades</li>
+          <li>Disponible en iOS, Android y web</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>Duolingo se adapta excepcionalmente bien a las necesidades de niños con TDAH porque sus actividades son breves y variadas, evitando la fatiga cognitiva. El sistema de recompensas inmediatas (corazones, XP, insignias) activa el circuito de dopamina, favoreciendo la motivación intrínseca. Las instrucciones son simples, visuales y acompañadas de audio, lo que reduce la carga de procesamiento. La racha diaria promueve rutinas, un aspecto clave en la intervención pedagógica del TDAH.</p>
+      </div>
+      <div class="actividad-box t1">
+        <h4>✏️ Actividad: "Mi primera aventura en inglés" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico | <strong>Duración:</strong> 15 minutos | <strong>Materia:</strong> Inglés | <strong>Edades:</strong> 7–10 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Que el niño complete 3 lecciones del módulo "Básicos 1" y registre las 5 palabras nuevas aprendidas en una tarjeta ilustrada.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>El docente abre Duolingo en la pizarra interactiva y presenta al personaje Duo. Se establece un reto: completar las 3 primeras lecciones.</p></div>
+          <div class="step"><div class="step-num">2</div><p>Cada niño accede desde su tablet y completa las lecciones (máx. 5 min c/u). Se permite música instrumental de fondo para reducir distracciones.</p></div>
+          <div class="step"><div class="step-num">3</div><p>Al finalizar, el niño dibuja en una tarjeta (física o digital) las 5 palabras aprendidas con su traducción e ilustración propia.</p></div>
+          <div class="step"><div class="step-num">4</div><p>Se comparten las tarjetas en el mural del aula. Se celebra con aplausos a quienes completaron su racha del día. 🏆</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 2. SCRATCH ===== -->
+  <div class="tool-card t2" id="t2">
+    <div class="tool-header">
+      <div class="tool-icon">🐱</div>
+      <div class="tool-header-text">
+        <h2>Scratch</h2>
+        <p>🌐 scratch.mit.edu · Gratuito · Web · MIT</p>
+      </div>
+      <div class="tool-number">02</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>Scratch es un entorno de programación visual desarrollado por el MIT Media Lab, diseñado para que niños y jóvenes aprendan a programar mediante bloques gráficos de arrastrar y soltar. Permite crear historias interactivas, juegos y animaciones sin necesidad de escribir código textual.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>Programación por bloques de colores (visual e intuitivo)</li>
+          <li>Interfaz amigable con personajes (sprites) editables</li>
+          <li>Comunidad global donde compartir proyectos</li>
+          <li>Sin necesidad de instalación (funciona en navegador)</li>
+          <li>Permite resultados inmediatos y visibles</li>
+          <li>Compatible con ScratchJr para edades 5–7 años</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>Scratch favorece el pensamiento computacional de manera lúdica y visual, lo que resulta altamente motivador para niños con TDAH. El hecho de ver resultados inmediatos al ejecutar bloques de código activa la recompensa instantánea que estos niños necesitan. La libertad creativa permite que canalicen su energía e impulsividad de forma productiva. Los proyectos cortos y concretos evitan la frustración, y la posibilidad de compartir en comunidad fortalece la autoestima y la motivación extrínseca.</p>
+      </div>
+      <div class="actividad-box t2">
+        <h4>✏️ Actividad: "Mi animal favorito animado" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico | <strong>Duración:</strong> 20 minutos | <strong>Materia:</strong> Ciencias Naturales / Informática | <strong>Edades:</strong> 8–11 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Crear una animación en Scratch donde un animal diga 3 datos curiosos sobre sí mismo.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>El docente proyecta un ejemplo terminado: un gato que camina y dice "¡Soy un felino! Duermo 16 horas al día". Esto motiva a los estudiantes.</p></div>
+          <div class="step"><div class="step-num">2</div><p>Cada niño elige un sprite de animal del catálogo de Scratch y selecciona un fondo relacionado con su hábitat.</p></div>
+          <div class="step"><div class="step-num">3</div><p>Usando los bloques de <em>Movimiento</em> y <em>Apariencia</em>, programan que el animal se mueva y diga 3 datos curiosos usando el bloque "decir [ ] por 2 segundos".</p></div>
+          <div class="step"><div class="step-num">4</div><p>Presentan su animación al grupo. Se aplaude cada presentación. Los proyectos se guardan y comparten con la familia. 🎉</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 3. GENIALLY ===== -->
+  <div class="tool-card t3" id="t3">
+    <div class="tool-header">
+      <div class="tool-icon">✨</div>
+      <div class="tool-header-text">
+        <h2>Genially</h2>
+        <p>🌐 genially.com · Freemium · Web</p>
+      </div>
+      <div class="tool-number">03</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>Genially es una plataforma de creación de contenido interactivo que permite diseñar presentaciones, infografías, juegos, escape rooms, cuestionarios y materiales educativos con elementos animados, interactivos y multimedia. Todo el contenido se comparte mediante un enlace web sin necesidad de descargas.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>Plantillas prediseñadas adaptables para educación</li>
+          <li>Interactividad mediante clics, menús y capas</li>
+          <li>Animaciones de entrada y transición de elementos</li>
+          <li>Integración de videos, audios e imágenes</li>
+          <li>Publicación instantánea mediante enlace</li>
+          <li>Modo colaborativo para trabajo en equipo</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>Genially transforma contenidos estáticos en experiencias interactivas que capturan y mantienen la atención de niños con TDAH. La posibilidad de hacer clic para descubrir información (aprendizaje por exploración) respeta el ritmo individual y fomenta la autonomía. Las animaciones y efectos visuales estimulan de manera controlada el procesamiento sensorial. Usar Genially como herramienta docente permite presentar la información de forma fragmentada y visual, reduciendo la sobrecarga cognitiva típica en estos estudiantes.</p>
+      </div>
+      <div class="actividad-box t3">
+        <h4>✏️ Actividad: "El sistema solar interactivo" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico-Intermedio | <strong>Duración:</strong> 25 minutos | <strong>Materia:</strong> Ciencias Naturales | <strong>Edades:</strong> 9–12 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Que el niño explore y complete un Genially interactivo sobre los planetas del sistema solar y responda 5 preguntas integradas.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>El docente comparte el enlace del Genially previamente creado con imágenes llamativas de los planetas, cada uno con un punto de clic.</p></div>
+          <div class="step"><div class="step-num">2</div><p>Al hacer clic en cada planeta, aparece una tarjeta con 2 datos curiosos, una imagen y un audio con pronunciación del nombre.</p></div>
+          <div class="step"><div class="step-num">3</div><p>El niño responde en su cuaderno o app de notas: "Mi planeta favorito es ___ porque ___". Solo 1 oración por planeta explorado.</p></div>
+          <div class="step"><div class="step-num">4</div><p>Al finalizar los 8 planetas, aparece una pantalla de "¡Felicitaciones, eres un explorador espacial!" con confeti animado. 🚀</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 4. PADLET ===== -->
+  <div class="tool-card t4" id="t4">
+    <div class="tool-header">
+      <div class="tool-icon">📌</div>
+      <div class="tool-header-text">
+        <h2>Padlet</h2>
+        <p>🌐 padlet.com · Freemium · Web y App</p>
+      </div>
+      <div class="tool-number">04</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>Padlet es un mural digital colaborativo en línea donde los usuarios pueden publicar notas, imágenes, videos, enlaces y archivos de forma libre o estructurada. Funciona como una pizarra virtual compartida en tiempo real, accesible desde cualquier dispositivo sin necesidad de crear una cuenta para visualizar.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>Formatos: muro libre, tablero, mapa, línea de tiempo</li>
+          <li>Publicación multimedia (texto, imagen, video, audio)</li>
+          <li>Colaboración en tiempo real múltiples usuarios</li>
+          <li>Reacciones y comentarios en cada publicación</li>
+          <li>Acceso mediante enlace o código QR</li>
+          <li>Interfaz colorida y personalizable</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>Padlet ofrece un espacio de expresión libre y visual que respeta los diferentes ritmos y estilos comunicativos de los niños con TDAH. Al no exigir una estructura lineal rígida, permite que publiquen ideas de manera espontánea sin la presión de "hacerlo perfecto". La visualización inmediata de las aportaciones del grupo genera un sentido de pertenencia y logro. Es especialmente útil para actividades de lluvia de ideas, donde la impulsividad se convierte en una fortaleza creativa.</p>
+      </div>
+      <div class="actividad-box t4">
+        <h4>✏️ Actividad: "Muro de emociones de la semana" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico | <strong>Duración:</strong> 15 minutos | <strong>Materia:</strong> Tutoría / Educación Socio-emocional | <strong>Edades:</strong> 7–10 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Que cada niño publique en el Padlet grupal una imagen o emoji que represente cómo se sintió durante la semana y escriba una oración breve.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>El docente proyecta el Padlet del aula con el título "¿Cómo me sentí esta semana?" y muestra cómo agregar una nota.</p></div>
+          <div class="step"><div class="step-num">2</div><p>Cada niño accede mediante el código QR o enlace y busca un emoji o imagen de emoción. La agrega al muro con su nombre.</p></div>
+          <div class="step"><div class="step-num">3</div><p>Escribe UNA oración: "Me sentí ___ cuando ___". El docente modela el ejemplo primero para reducir la ansiedad ante la tarea.</p></div>
+          <div class="step"><div class="step-num">4</div><p>Se hace una ronda oral breve (30 seg por niño, opcional) para compartir. El muro queda visible en el aula toda la semana. 💛</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 5. EDUCAPLAY ===== -->
+  <div class="tool-card t5" id="t5">
+    <div class="tool-header">
+      <div class="tool-icon">🎯</div>
+      <div class="tool-header-text">
+        <h2>Educaplay</h2>
+        <p>🌐 educaplay.com · Freemium · Web</p>
+      </div>
+      <div class="tool-number">05</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>Educaplay es una plataforma educativa que permite crear y compartir actividades interactivas multimedia para el aprendizaje. Ofrece más de 20 tipos de actividades como crucigramas, sopas de letras, emparejamientos, completar textos, quizzes y mapas interactivos, orientadas a reforzar contenidos de cualquier materia.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>+20 tipos de actividades interactivas disponibles</li>
+          <li>Creación sin necesidad de programación</li>
+          <li>Registro de resultados y estadísticas por alumno</li>
+          <li>Integración con plataformas LMS (Moodle, Google Classroom)</li>
+          <li>Actividades personalizables con imágenes y audio</li>
+          <li>Posibilidad de asignar actividades con código de clase</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>Educaplay convierte el repaso de contenidos en un proceso lúdico que mantiene activo al niño con TDAH. La variedad de formatos evita la monotonía y permite adaptar las actividades al nivel de cada estudiante. La retroalimentación inmediata (respuesta correcta/incorrecta) es fundamental para estos niños, ya que reduce la espera y mantiene el flujo de atención. Actividades como el "reloj" (contrarreloj) o el "ahorcado" añaden un componente de reto que potencia la concentración por lapsos cortos pero efectivos.</p>
+      </div>
+      <div class="actividad-box t5">
+        <h4>✏️ Actividad: "Crucigrama de los animales vertebrados" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico | <strong>Duración:</strong> 20 minutos | <strong>Materia:</strong> Ciencias Naturales | <strong>Edades:</strong> 8–11 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Resolver un crucigrama de 8 palabras sobre los grupos de animales vertebrados identificando pistas con imágenes.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>El docente comparte el enlace del crucigrama creado en Educaplay con 8 palabras clave (mamífero, reptil, anfibio, pez, ave, plumas, escamas, pulmones) y pistas con imágenes.</p></div>
+          <div class="step"><div class="step-num">2</div><p>Los niños trabajan individualmente o en parejas. Se establece un tiempo visual (temporizador en la pizarra): 12 minutos.</p></div>
+          <div class="step"><div class="step-num">3</div><p>Al completar el crucigrama, la plataforma muestra un mensaje de éxito con los puntos obtenidos. Los niños anotan su puntaje.</p></div>
+          <div class="step"><div class="step-num">4</div><p>Se realiza una revisión grupal de 3 minutos: el docente proyecta las respuestas y los niños se autoevalúan. El mejor puntaje recibe una estrella en ClassDojo. ⭐</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 6. CLASSDOJO ===== -->
+  <div class="tool-card t6" id="t6">
+    <div class="tool-header">
+      <div class="tool-icon">⭐</div>
+      <div class="tool-header-text">
+        <h2>ClassDojo</h2>
+        <p>🌐 classdojo.com · Gratuito · Web y App</p>
+      </div>
+      <div class="tool-number">06</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>ClassDojo es una plataforma de gestión del aula y comunicación educativa que permite a los docentes registrar el comportamiento y el progreso de los estudiantes mediante un sistema de puntos positivos, compartir momentos del aprendizaje con las familias y fomentar una comunidad escolar conectada a través de mensajes y portafolios digitales.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>Sistema de puntos positivos personalizables</li>
+          <li>Avatares de monstruos personalizables por el niño</li>
+          <li>Comunicación directa docente-familia en tiempo real</li>
+          <li>Portafolio digital para compartir trabajos</li>
+          <li>Módulo de Grandes Ideas (mindfulness, empatía)</li>
+          <li>Música ambiental y temporizadores integrados</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>ClassDojo es especialmente valioso para niños con TDAH porque el sistema de puntos positivos refuerza conductas deseadas de manera inmediata y visible. Los avatares personalizables generan un vínculo emocional con la herramienta. Los módulos de mindfulness ayudan a los niños a desarrollar autorregulación emocional. El hecho de que las familias puedan ver los logros en tiempo real crea una red de apoyo consistente, uno de los factores más protectores para niños con TDAH. El temporizador visual reduce la ansiedad ante las tareas cronometradas.</p>
+      </div>
+      <div class="actividad-box t6">
+        <h4>✏️ Actividad: "Reto de la semana: soy un héroe del aula" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico | <strong>Duración:</strong> Toda la semana (5 min/día) | <strong>Materia:</strong> Convivencia Escolar | <strong>Edades:</strong> 6–10 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Que el niño acumule puntos positivos durante la semana cumpliendo 3 metas de conducta pactadas con el docente.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>Al inicio de la semana, el docente acuerda con cada niño 3 metas personales (ej: "Levantar la mano", "Terminar una tarea", "Ayudar a un compañero").</p></div>
+          <div class="step"><div class="step-num">2</div><p>Cada vez que el niño cumple una meta, el docente le otorga un punto Dojo en vivo desde la app. El niño ve el punto aparecer en su avatar.</p></div>
+          <div class="step"><div class="step-num">3</div><p>El viernes se revisa el tablero grupal. Los niños con 10+ puntos reciben el título "Héroe del Aula" y eligen una actividad libre por 10 minutos.</p></div>
+          <div class="step"><div class="step-num">4</div><p>El docente envía un mensaje de felicitación a la familia de cada niño que alcanzó su meta personal, independientemente del puntaje total. 🏆</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 7. KAHOOT ===== -->
+  <div class="tool-card t7" id="t7">
+    <div class="tool-header">
+      <div class="tool-icon">🎉</div>
+      <div class="tool-header-text">
+        <h2>Kahoot!</h2>
+        <p>🌐 kahoot.com · Freemium · Web y App</p>
+      </div>
+      <div class="tool-number">07</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>Kahoot! es una plataforma de aprendizaje basado en juegos que permite crear cuestionarios interactivos (kahoots) que se responden en tiempo real de manera competitiva o colaborativa. Los participantes ingresan con un código PIN y responden desde sus dispositivos, acumulando puntos por velocidad y precisión.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>Cuestionarios con música, imágenes y tiempo límite</li>
+          <li>Podio en tiempo real con clasificación animada</li>
+          <li>Modo equipo para trabajo colaborativo</li>
+          <li>Kahoot! de práctica individual sin presión competitiva</li>
+          <li>Informes automáticos de resultados por pregunta</li>
+          <li>Biblioteca con miles de kahoots educativos públicos</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>Kahoot! aprovecha la naturaleza impulsiva e hiperactiva del TDAH como una fortaleza: la velocidad de respuesta y la energía competitiva encuentran un canal productivo. La música de fondo actúa como regulador sensorial. El tiempo límite por pregunta (20-30 seg) es perfectamente compatible con el ciclo de atención de estos niños. El elemento de sorpresa en cada pregunta reactiva la atención constantemente. Se recomienda usar el "Modo Equipo" para reducir la presión individual y fomentar la colaboración.</p>
+      </div>
+      <div class="actividad-box t7">
+        <h4>✏️ Actividad: "¡Kahoot! de las tablas de multiplicar" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico | <strong>Duración:</strong> 15 minutos | <strong>Materia:</strong> Matemáticas | <strong>Edades:</strong> 8–10 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Repasar las tablas del 2 al 5 mediante un Kahoot! de 10 preguntas en modo equipo.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>El docente divide la clase en equipos de 3. Cada equipo elige un nombre divertido de animal. Solo un dispositivo por equipo.</p></div>
+          <div class="step"><div class="step-num">2</div><p>Se proyecta el Kahoot! con 10 preguntas: multiplicaciones ilustradas (ej: "3 grupos de 4 manzanas = ?") con imágenes para facilitar la comprensión.</p></div>
+          <div class="step"><div class="step-num">3</div><p>Los equipos discuten la respuesta en voz baja (15 segundos) y un miembro presiona la opción. Se promueve que todos participen en decidir.</p></div>
+          <div class="step"><div class="step-num">4</div><p>Al finalizar, el equipo ganador comparte una estrategia que usó para recordar las tablas. Los demás la anotan. 🎊</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 8. CANVA EDUCATIVO ===== -->
+  <div class="tool-card t8" id="t8">
+    <div class="tool-header">
+      <div class="tool-icon">🎨</div>
+      <div class="tool-header-text">
+        <h2>Canva Educativo</h2>
+        <p>🌐 canva.com/education · Gratuito para docentes · Web y App</p>
+      </div>
+      <div class="tool-number">08</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>Canva para Educación es la versión gratuita y extendida de la plataforma de diseño gráfico Canva, dirigida a docentes y estudiantes. Permite crear presentaciones, infografías, carteles, portafolios digitales, videos cortos y materiales visuales de alta calidad a través de plantillas editables y una biblioteca de millones de elementos gráficos.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>Acceso gratuito completo con cuenta educativa</li>
+          <li>+250,000 plantillas educativas personalizables</li>
+          <li>Colaboración en tiempo real en equipos</li>
+          <li>Herramienta de presentación con modo "Hablar"</li>
+          <li>Generador de IA para imágenes y textos</li>
+          <li>Exportación en múltiples formatos (PDF, PNG, MP4)</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>Canva permite a los niños con TDAH expresar su comprensión a través de canales visuales y creativos, reduciendo la dependencia del texto escrito extenso que suele ser un obstáculo. La interfaz de arrastrar y soltar es intuitiva y rápida, adaptándose al ritmo impulsivo sin generar frustración. La variedad de recursos visuales mantiene el interés durante la tarea. Crear una infografía o cartel implica síntesis de información, una habilidad que se trabaja de forma atractiva. El producto final es tangible y genera orgullo en el estudiante.</p>
+      </div>
+      <div class="actividad-box t8">
+        <h4>✏️ Actividad: "Mi superhéroe del reciclaje" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico | <strong>Duración:</strong> 30 minutos | <strong>Materia:</strong> Educación Ambiental | <strong>Edades:</strong> 8–12 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Diseñar un cartel en Canva con un superhéroe del reciclaje que tenga nombre, superpoder ambiental y 3 consejos para cuidar el planeta.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>El docente comparte una plantilla de cartel en Canva Educación con el diseño base ya preparado. Solo deben completar los espacios señalados.</p></div>
+          <div class="step"><div class="step-num">2</div><p>Cada niño elige o dibuja su superhéroe usando los stickers y formas de Canva. Le pone nombre y describe su superpoder (ej: "Convierte basura en energía").</p></div>
+          <div class="step"><div class="step-num">3</div><p>Añaden 3 consejos ecológicos en burbujas de diálogo con íconos visuales. El docente asiste a quien lo necesite con frases de apoyo.</p></div>
+          <div class="step"><div class="step-num">4</div><p>Los carteles se imprimen o se proyectan en una galería virtual. La clase vota (con stickers) por el superhéroe más creativo. 🌍</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 9. BOOK CREATOR ===== -->
+  <div class="tool-card t9" id="t9">
+    <div class="tool-header">
+      <div class="tool-icon">📖</div>
+      <div class="tool-header-text">
+        <h2>Book Creator</h2>
+        <p>🌐 bookcreator.com · Freemium · Web y App (iPad)</p>
+      </div>
+      <div class="tool-number">09</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>Book Creator es una herramienta de creación de libros digitales multimediales que permite a estudiantes y docentes diseñar e-books con texto, imágenes, audio, video y cómics. Los libros creados pueden publicarse en una biblioteca digital compartida, fomentando la lectura y la escritura creativa en entornos digitales.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>Creación de libros con páginas ilimitadas</li>
+          <li>Modo cómic integrado con viñetas personalizables</li>
+          <li>Grabación de voz para narración de historias</li>
+          <li>Biblioteca de clase compartida (hasta 40 libros gratis)</li>
+          <li>Compatible con lector de pantalla y herramientas accesibles</li>
+          <li>Exportación en PDF o ePub</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>Book Creator permite que los niños con TDAH sean los autores de su propio aprendizaje, lo cual eleva significativamente la motivación intrínseca. El modo cómic es especialmente beneficioso: las viñetas breves con imágenes y texto mínimo se alinean con las preferencias visuales y la producción textual reducida de estos niños. La función de grabación de voz elimina la barrera de la escritura cuando esta resulta frustrante. El producto final (un libro real) genera un sentido de logro y autoeficacia, aspectos críticos para la autoestima de niños con TDAH.</p>
+      </div>
+      <div class="actividad-box t9">
+        <h4>✏️ Actividad: "El cómic de mi día perfecto" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico | <strong>Duración:</strong> 30 minutos | <strong>Materia:</strong> Lengua y Literatura / Tutoría | <strong>Edades:</strong> 7–11 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Crear un cómic de 4 viñetas en Book Creator que narre las 4 partes de su "día perfecto" usando imágenes y máximo 2 oraciones por viñeta.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>El docente muestra un ejemplo de cómic de 4 viñetas en Book Creator: Mañana / Tarde / Noche / El momento favorito. Los niños planifican en un borrador de papel (3 min).</p></div>
+          <div class="step"><div class="step-num">2</div><p>Abren Book Creator, seleccionan el modo cómic y eligen una plantilla de 4 viñetas. Insertan imágenes del banco o dibujan con el lápiz digital.</p></div>
+          <div class="step"><div class="step-num">3</div><p>Escriben máximo 2 oraciones por viñeta usando texto o globos de diálogo. Los que prefieran pueden grabar su voz narrando cada escena.</p></div>
+          <div class="step"><div class="step-num">4</div><p>Los cómics se publican en la biblioteca de clase. Cada niño lee el cómic de un compañero y deja un comentario de audio positivo. 📚</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 10. MINDMEISTER ===== -->
+  <div class="tool-card t10" id="t10">
+    <div class="tool-header">
+      <div class="tool-icon">🗺️</div>
+      <div class="tool-header-text">
+        <h2>MindMeister</h2>
+        <p>🌐 mindmeister.com · Freemium · Web y App</p>
+      </div>
+      <div class="tool-number">10</div>
+    </div>
+    <div class="tool-body">
+      <div class="tool-section">
+        <h4>📖 Definición</h4>
+        <p>MindMeister es una herramienta de mapas mentales en línea que permite crear, compartir y colaborar en la organización visual de ideas y conceptos. Los mapas mentales se construyen de forma radial, partiendo de un concepto central hacia ramas de ideas secundarias, facilitando la organización del pensamiento no lineal.</p>
+      </div>
+      <div class="tool-section">
+        <h4>⚙️ Características</h4>
+        <ul>
+          <li>Creación de mapas mentales colaborativos en tiempo real</li>
+          <li>Plantillas educativas preconfiguradas</li>
+          <li>Íconos, colores y estilos personalizables por rama</li>
+          <li>Modo presentación integrado desde el mapa</li>
+          <li>Exportación en PDF, PNG y formato Word</li>
+          <li>Integración con Google Drive y MeisterTask</li>
+        </ul>
+      </div>
+      <div class="tool-section full">
+        <h4>🧩 Aporte Pedagógico para Niños con TDAH</h4>
+        <p>Los mapas mentales son una estrategia pedagógica de alto impacto para niños con TDAH porque reflejan su forma natural de pensar: de manera ramificada, asociativa y no lineal. MindMeister digitaliza este proceso añadiendo color, imágenes e íconos que estimulan la memoria visual. Organizar ideas en un mapa reduce la sobrecarga cognitiva al fragmentar información compleja en nodos manejables. El proceso de crear el mapa es activo y manipulativo, manteniendo el cuerpo y la mente en movimiento. Se puede usar como herramienta de planificación de tareas, reduciendo la procrastinación característica del TDAH.</p>
+      </div>
+      <div class="actividad-box t10">
+        <h4>✏️ Actividad: "Mapa mental de mi libro favorito" <em style="font-family:'Nunito';font-size:13px;font-weight:600;">(Autoría propia)</em></h4>
+        <p><strong>Nivel:</strong> Básico-Intermedio | <strong>Duración:</strong> 25 minutos | <strong>Materia:</strong> Lengua y Literatura | <strong>Edades:</strong> 9–12 años</p>
+        <p style="margin-top:8px;"><strong>Objetivo:</strong> Crear un mapa mental en MindMeister con el título del libro en el centro y 4 ramas: Personajes, Lugar, Problema y Mi opinión.</p>
+        <div class="actividad-steps">
+          <div class="step"><div class="step-num">1</div><p>El docente proyecta un mapa mental de ejemplo sobre un cuento conocido (ej: Caperucita Roja) con 4 ramas coloridas. Se explica la estructura en 2 minutos.</p></div>
+          <div class="step"><div class="step-num">2</div><p>Cada niño ingresa a MindMeister y abre una plantilla básica. Escribe el título de su libro favorito en el nodo central con color e ícono elegidos.</p></div>
+          <div class="step"><div class="step-num">3</div><p>Crean las 4 ramas: Personajes (con íconos de personas), Lugar (ícono de casa/mapa), Problema (ícono de interrogación) y Mi opinión (corazón o estrella). En cada rama añaden 2-3 palabras clave, no oraciones.</p></div>
+          <div class="step"><div class="step-num">4</div><p>En 2 minutos por turno, cada niño presenta su mapa en modo presentación. Los compañeros hacen una pregunta sobre el libro. Se exporta el mapa como recuerdo. 🗺️</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <p style="font-size:1.1rem;margin-bottom:8px;">📚 <strong>Guía Didáctica de Herramientas Digitales para Niños con TDAH</strong></p>
+  <p>Actividad Sumativa N°03 · Tecnología Educativa Inclusiva y Competencias Digitales</p>
+  <p style="margin-top:8px;">Docente: <strong>Ing. Lissett Margarita Arévalo Gamboa, MgTi.</strong> · UNEMI Posgrados</p>
+  <p style="margin-top:16px;opacity:0.5;font-size:12px;">Todas las actividades son de autoría propia del equipo estudiantil · 2025</p>
+</footer>
+
+</body>
+</html>
